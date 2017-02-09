@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ImpToDo</string>
+    <string name="mark_on_calender">Mark on calender</string>
+    <string name="item_to_do">Enter your wish</string>
+    <string name="hint_username">Enter Username</string>
+    <string name="hint_password">Enter Password</string>
+    <string name="text_login">Login</string>
+    <string name="username_error">Username should not be empty</string>
+    <string name="password_error">Password should not be empty</string>
+    <string name="todo_adding_error">Empty ToDo can not be added!</string>
+</resources>
