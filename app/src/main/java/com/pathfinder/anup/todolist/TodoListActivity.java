@@ -1,11 +1,9 @@
-package todolist;
+package com.pathfinder.anup.todolist;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,11 +13,10 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.pathfinder.anup.calendar.CalendarActivity;
 import com.pathfinder.anup.imptodo.R;
 
 import java.util.List;
-
-import calender.CalenderActivity;
 
 /**
  * Created by Anup on 2/8/2017.
@@ -82,7 +79,7 @@ public class TodoListActivity extends Activity implements TodoMainView, AdapterV
     @Override
     public void navigateToHome() {
 
-       startActivity(new Intent(TodoListActivity.this, CalenderActivity.class));
+       startActivity(new Intent(TodoListActivity.this, CalendarActivity.class));
     }
 
     @Override
@@ -93,6 +90,7 @@ public class TodoListActivity extends Activity implements TodoMainView, AdapterV
     @Override
     protected void onResume() {
         super.onResume();
+
         todoViewPresenter.onResume(getApplicationContext());
     }
 

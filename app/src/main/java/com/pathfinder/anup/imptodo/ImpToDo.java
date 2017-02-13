@@ -4,12 +4,12 @@ import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import frgaments.FragCalender;
-import frgaments.FragToDoList;
+import com.pathfinder.anup.frgaments.FragCalender;
+import com.pathfinder.anup.frgaments.FragToDoList;
 
 public class ImpToDo extends AppCompatActivity {
 
-    public static final String FRAG_TO_DO_LIST = "To to list";
+   /* public static final String FRAG_TO_DO_LIST = "To to list";
     public static final String FRAG_CALENDER = "calender";
     public static final String FRAG_ACTION_DONE = "Completed task";
 
@@ -41,5 +41,5 @@ public class ImpToDo extends AppCompatActivity {
             fragmentTransaction.commit();
         }
 
-    }
+    }*/
 }

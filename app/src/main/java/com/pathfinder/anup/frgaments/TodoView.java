@@ -1,4 +1,4 @@
-package frgaments;
+package com.pathfinder.anup.frgaments;
 
 import java.util.List;
 

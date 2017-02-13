@@ -1,6 +1,5 @@
-package frgaments;
+package com.pathfinder.anup.frgaments;
 
-import android.app.Activity;
 import android.content.Context;
 
 import java.util.List;

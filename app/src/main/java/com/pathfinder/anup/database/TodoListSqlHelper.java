@@ -1,4 +1,4 @@
-package database;
+package com.pathfinder.anup.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

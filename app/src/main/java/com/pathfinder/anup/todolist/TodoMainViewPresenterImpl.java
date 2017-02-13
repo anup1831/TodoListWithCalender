@@ -1,9 +1,7 @@
-package todolist;
+package com.pathfinder.anup.todolist;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.util.List;
 

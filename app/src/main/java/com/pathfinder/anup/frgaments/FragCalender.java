@@ -1,4 +1,4 @@
-package frgaments;
+package com.pathfinder.anup.frgaments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -16,10 +16,10 @@ import com.pathfinder.anup.imptodo.R;
 
 public class FragCalender extends Fragment {
 
-    ImpToDo.FRAGMENT_STATES mSrcFrag;
+  /*  ImpToDo.FRAGMENT_STATES mSrcFrag;
 
 
-    public static FragCalender newInstance(/*int index*/) {
+    public static FragCalender newInstance(*//*int index*//*) {
         FragCalender f = new FragCalender();
         Bundle args = new Bundle();
         //args.putInt("index", index);
@@ -29,11 +29,11 @@ public class FragCalender extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view  = inflater.inflate(R.layout.layout_calender, container, false);
-        return view;
+        //View view  = inflater.inflate(R.layout.layout_calender, container, false);
+        //return view;
     }
 
     public void setSourceFragment(ImpToDo.FRAGMENT_STATES srcFrag) {
         this.mSrcFrag = srcFrag;
-    }
+    }*/
 }

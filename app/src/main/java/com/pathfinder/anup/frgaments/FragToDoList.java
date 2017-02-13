@@ -1,11 +1,8 @@
-package frgaments;
+package com.pathfinder.anup.frgaments;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +17,7 @@ import com.pathfinder.anup.imptodo.R;
  */
 
 public class FragToDoList extends Fragment {
-
+/*
     Button btn_markCalender;
 
     ImpToDo.FRAGMENT_STATES mSrcFrag;
@@ -32,12 +29,12 @@ public class FragToDoList extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Clicked!", Toast.LENGTH_LONG).show();
-                /*FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                *//*FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 FragCalender fragCalender = new FragCalender();
                 fragmentTransaction.replace(R.id.fragment_container,fragCalender, ImpToDo.FRAG_CALENDER);
                 //fragCalender.setSourceFragment("Calender");
                 fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();*/
+                fragmentTransaction.commit();*//*
             }
         });
         return view;
@@ -56,5 +53,5 @@ public class FragToDoList extends Fragment {
             e.printStackTrace();
         }
         super.onDestroy();
-    }
+    }*/
 }

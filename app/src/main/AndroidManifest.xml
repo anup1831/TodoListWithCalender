@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="login.LoginActivity">
+        <activity android:name="com.pathfinder.anup.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -16,9 +16,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ImpToDo"/>
-        <activity android:name="todolist.TodoListActivity"
+        <activity android:name="com.pathfinder.anup.todolist.TodoListActivity"
             android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity android:name="calender.CalenderActivity"/>
+        <activity android:name="com.pathfinder.anup.calendar.CalendarActivity"/>
     </application>
 
 </manifest>

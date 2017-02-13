@@ -1,4 +1,4 @@
-package login;
+package com.pathfinder.anup.login;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,10 +9,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.pathfinder.anup.imptodo.ImpToDo;
 import com.pathfinder.anup.imptodo.R;
 
-import todolist.TodoListActivity;
+import com.pathfinder.anup.todolist.TodoListActivity;
 
 /**
  * Created by Anup on 2/6/2017.

@@ -1,4 +1,4 @@
-package todolist;
+package com.pathfinder.anup.todolist;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package frgaments;
+package com.pathfinder.anup.frgaments;
 
 /**
  * Created by Anup on 2/7/2017.

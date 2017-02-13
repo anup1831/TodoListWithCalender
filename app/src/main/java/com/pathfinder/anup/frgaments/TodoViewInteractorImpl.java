@@ -1,43 +1,42 @@
-package todolist;
+package com.pathfinder.anup.frgaments;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.text.TextUtils;
 import android.widget.ListAdapter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import database.TodoListSqlHelper;
+import com.pathfinder.anup.database.TodoListSqlHelper;
 
 /**
- * Created by Anup on 2/8/2017.
+ * Created by Anup on 2/6/2017.
  */
 
-public class TodoMainViewInteractorImpl implements TodoMainViewInteractor {
-
+public class TodoViewInteractorImpl implements TodoViewInteractor {
     TodoListSqlHelper todoListSqlHelper;
     private ListAdapter todoListAdapter;
-
     @Override
-    public void pullListFromDB(Context context, OnLoadListFinishedListener listFinishedListener) {
-        listFinishedListener.onLoadListFinished(updateTodoList(context));
-    }
-
-    @Override
-    public void addWishTodoData(Context context, String todoItem) {
+    public void addWishTodoList(Context context, String wishItem, OnFinishedListener listener) {
+        // add wish item in local com.pathfinder.anup.com.pathfinder.anup.database
         todoListSqlHelper = new TodoListSqlHelper(context);
         SQLiteDatabase sqLiteDatabase = todoListSqlHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.clear();
-        values.put(TodoListSqlHelper.COL1_TASK, todoItem);
+        values.put(TodoListSqlHelper.COL1_TASK, wishItem);
         sqLiteDatabase.insertWithOnConflict(TodoListSqlHelper.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+
     }
 
+    @Override
+    public void pullListFromDB(Context context, OnFinishedListener listener) {
+
+        listener.onSuccess(updateTodoList(context));
+
+    }
 
     private List<String> updateTodoList(Context context){
         List<String> wishList = new ArrayList<>();
@@ -60,16 +59,5 @@ public class TodoMainViewInteractorImpl implements TodoMainViewInteractor {
                 0
         );*/
         return wishList;
-        /*return Arrays.asList(
-                "Jamshedpur",
-                "Jamnagar",
-                "Junagadh",
-                "Jogeshwari",
-                "Powai",
-                "Khargarh",
-                "Panvel",
-                "Boriwali",
-                "Virar"
-        );*/
     }
 }
