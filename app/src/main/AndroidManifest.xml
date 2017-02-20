@@ -19,6 +19,8 @@
         <activity android:name="com.pathfinder.anup.todolist.TodoListActivity"
             android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity android:name="com.pathfinder.anup.calendar.CalendarActivity"/>
+        <activity android:name="com.pathfinder.anup.dailyaction.DailyActivityScreen"
+            android:theme="@android:style/Theme.Dialog"/>
     </application>
 
 </manifest>

@@ -34,6 +34,7 @@ public class TodoMainViewInteractorImpl implements TodoMainViewInteractor {
         values.clear();
         values.put(TodoListSqlHelper.COL1_TASK, todoItem);
         sqLiteDatabase.insertWithOnConflict(TodoListSqlHelper.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+        sqLiteDatabase.close();
     }
 
 
@@ -48,26 +49,7 @@ public class TodoMainViewInteractorImpl implements TodoMainViewInteractor {
         while (cursor.moveToNext()){
             wishList.add(cursor.getString(cursor.getColumnIndexOrThrow(TodoListSqlHelper.COL1_TASK)));
         }
-
-        /*todoListAdapter = new SimpleCursorAdapter(
-                context,
-                R.layout.layout_todo_list_item,
-                cursor,
-                new String[]{TodoListSqlHelper.COL1_TASK},
-                new int[]{R.id.todoTaskTV},
-                0
-        );*/
+        sqLiteDatabase.close();
         return wishList;
-        /*return Arrays.asList(
-                "Jamshedpur",
-                "Jamnagar",
-                "Junagadh",
-                "Jogeshwari",
-                "Powai",
-                "Khargarh",
-                "Panvel",
-                "Boriwali",
-                "Virar"
-        );*/
     }
 }

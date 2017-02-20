@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ImpToDo</string>
     <string name="mark_on_calender">Mark on calender</string>
+    <string name="mark_done">Done</string>
     <string name="item_to_do">Enter your wish</string>
     <string name="hint_username">Enter Username</string>
     <string name="hint_password">Enter Password</string>

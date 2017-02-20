@@ -1,9 +1,11 @@
 package com.pathfinder.anup.calendar;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.pathfinder.anup.dailyaction.DailyActivityScreen;
 import com.pathfinder.anup.imptodo.R;
 
 import java.text.DateFormat;
@@ -44,6 +46,8 @@ public class CalendarActivity extends Activity {
             public void onGridClickListener(Date date) {
                 DateFormat df = SimpleDateFormat.getDateInstance();
                 Toast.makeText(CalendarActivity.this, df.format(date), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(CalendarActivity.this, DailyActivityScreen.class));
+               //
             }
         });
 
