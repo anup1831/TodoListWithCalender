@@ -64,4 +64,15 @@ public class DailyActivityMainViewPresenterImpl implements DailyActivityMainView
         // save the data in DB again with updated status of completed task that marked via checkbox
         //Log.i("Anup", " list size -"+lis)
     }
+
+    @Override
+    public void addUpdatedTodoDataInDB(Context context, List<WishItemModel> updatedTodoItemList) {
+        if(updatedTodoItemList.size() > -1){
+            Log.i("Anup", "updated todoList size "+updatedTodoItemList.size());
+            mainView.showProgress();
+            mainViewInteractor.addUpdatedTodoDataInDB(context, updatedTodoItemList);
+            mainView.hideProgress();
+
+        }
+    }
 }

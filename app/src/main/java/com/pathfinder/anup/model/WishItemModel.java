@@ -6,6 +6,7 @@ package com.pathfinder.anup.model;
 
 public class WishItemModel {
 
+
     private String wishItem;
     private int value;
 

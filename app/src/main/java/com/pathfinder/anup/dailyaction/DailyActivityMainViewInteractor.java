@@ -23,4 +23,6 @@ public interface DailyActivityMainViewInteractor {
     interface OnCheckBoxClickedListener{
         void onCheckedListener();
     }
+
+    void addUpdatedTodoDataInDB(Context context, List<WishItemModel> updatedTodoList);
 }

@@ -49,7 +49,9 @@ public class DailyActivityScreen extends Activity implements DailyActivityMainVi
     public void onClick(View view) {
         if(view.getId() == R.id.btn_mark_done){
             Toast.makeText(getApplicationContext(), "Save data to DB "+modelList.size(), Toast.LENGTH_LONG).show();
-           // saveDataInDB();
+            mainViewPresenter.addUpdatedTodoDataInDB(getApplicationContext(), modelList);
+            //saveDataInDB();
+            modelList.clear();
         }
     }
 

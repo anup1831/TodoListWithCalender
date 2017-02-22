@@ -17,6 +17,7 @@ import com.pathfinder.anup.dailyaction.DailyActivityScreen;
 import com.pathfinder.anup.imptodo.R;
 import com.pathfinder.anup.model.WishItemModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ public class WishListAdapter extends BaseAdapter{
     public WishListAdapter(Context context, List<WishItemModel> todoList) {
         this.context = context;
         this.todoList = todoList;
-        DailyActivityScreen.modelList = null;
+        DailyActivityScreen.modelList = new ArrayList<>();
         //dbDataListener = (DBDataListener) context;
     }
 
@@ -71,9 +72,10 @@ public class WishListAdapter extends BaseAdapter{
                 checkBox.setChecked(b);
                if(b) {
                   todoList.get(i).setValue(1);
-                   DailyActivityScreen.modelList = todoList;
-               } else {todoList.get(i).setValue(0);
-
+                   DailyActivityScreen.modelList.add(todoList.get(i));
+               } else {
+                   todoList.get(i).setValue(0);
+                   DailyActivityScreen.modelList.remove(todoList.get(i));
                }
                 //dbDataListener.saveDataInDB(todoList);
                 Log.i("Anup",  "checkBox -"+todoList.get(i).getValue() + " - "+ todoList.get(i).getWishItem());
