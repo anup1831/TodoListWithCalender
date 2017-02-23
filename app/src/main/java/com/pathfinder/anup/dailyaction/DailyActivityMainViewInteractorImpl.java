@@ -33,51 +33,60 @@ public class DailyActivityMainViewInteractorImpl implements DailyActivityMainVie
 
         todoListSqlHelper = new TodoListSqlHelper(context);
         SQLiteDatabase sqLiteDatabase = todoListSqlHelper.getWritableDatabase();
+        sqLiteDatabase.beginTransaction();
+        try{
+            //Todo item may be already present in DB so update its status only, Todo item is unique here
+           // long taskID = addOrUpdateTodoItem(updatedTodoList.get());
 
-        Log.i("Anup", "size of updatedTodoList list - "+updatedTodoList.size());
-        ContentValues values = new ContentValues();
-        for (WishItemModel item: updatedTodoList) {
-            Log.i("Anup", "insert item "+item.getWishItem());
-            values.put(TodoListSqlHelper.TASK_DONE, item.getWishItem());
-            Log.i("Anup", "insert status "+item.getValue());
-            values.put(TodoListSqlHelper.TASK_STATUS, item.getValue());
+            ContentValues values = new ContentValues();
+            for (WishItemModel item: updatedTodoList) {
+                Log.i("Anup", "insert item "+item.getWishItem());
+                values.put(TodoListSqlHelper.TASK_DONE, item.getWishItem());
+                Log.i("Anup", "insert status "+item.getValue());
+                values.put(TodoListSqlHelper.TASK_STATUS, item.getValue());
+            }
+
+            Log.i("Anup", "size of updatedTodoList list - "+updatedTodoList.size());
+            sqLiteDatabase.insertOrThrow(TodoListSqlHelper.TABLE_NAME_UPDATED_TODO_LIST, null, values);
+            sqLiteDatabase.setTransactionSuccessful();
+        }catch (Exception e){
+            Log.d("Anup", "Error while trying to add post to database");
+        } finally {
+            sqLiteDatabase.endTransaction();
         }
-
-        sqLiteDatabase.insertWithOnConflict(TodoListSqlHelper.TABLE_NAME_UPDATED_TODO_LIST, null, values, SQLiteDatabase.CONFLICT_IGNORE);
-
-        sqLiteDatabase.close();
 
     }
 
-    private void fetchUpdatedTodoListFromDB(Context context){
+    /*private List<UpdatedTodoModel> fetchAllUpdatedTodoListFromDB(Context context){
         todoListSqlHelper = new TodoListSqlHelper(context);
         List<UpdatedTodoModel> reportList = new ArrayList<UpdatedTodoModel>();
         UpdatedTodoModel model;
-        String selectQuery = "SELECT  * FROM " + TodoListSqlHelper.TABLE_NAME_UPDATED_TODO_LIST;
-        SQLiteDatabase sqLiteDatabase = todoListSqlHelper.getWritableDatabase();
+        String selectQuery = "SELECT * FROM " + TodoListSqlHelper.TABLE_NAME_UPDATED_TODO_LIST;
+        SQLiteDatabase sqLiteDatabase = todoListSqlHelper.getReadableDatabase();
 
         Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
-
-        Log.i("Anup", "---------------------------- " +cursor.getCount());
-
-        if(cursor.moveToFirst()){
-            while (cursor.moveToNext()){
-                model = new UpdatedTodoModel();
-                model.setId(cursor.getInt(cursor.getColumnIndexOrThrow(TodoListSqlHelper._ID_UPDATED_TODO)));
-                model.setItem(cursor.getString(cursor.getColumnIndexOrThrow(TodoListSqlHelper.TASK_DONE)));
-                model.setStatus(cursor.getInt(cursor.getColumnIndexOrThrow(TodoListSqlHelper.TASK_STATUS)));
-                reportList.add(model);
+        try{
+           if(cursor.moveToFirst()){
+                do{
+                    model = new UpdatedTodoModel();
+                    model.setId(cursor.getInt(cursor.getColumnIndex(TodoListSqlHelper._ID_UPDATED_TODO)));
+                    Log.d("Anup", "ID "+cursor.getInt(cursor.getColumnIndex(TodoListSqlHelper._ID_UPDATED_TODO)));
+                    model.setItem(cursor.getString(cursor.getColumnIndex(TodoListSqlHelper.TASK_DONE)));
+                    Log.d("Anup", "Item "+cursor.getString(cursor.getColumnIndex(TodoListSqlHelper.TASK_DONE)));
+                    model.setStatus(cursor.getInt(cursor.getColumnIndex(TodoListSqlHelper.TASK_STATUS)));
+                    Log.d("Anup", "Status "+cursor.getInt(cursor.getColumnIndex(TodoListSqlHelper.TASK_STATUS)));
+                    reportList.add(model);
+                }while (cursor.moveToNext());
+           }
+        }catch (Exception e){
+            Log.d("Anup", "Error while trying to get posts from database");
+        } finally {
+            if(cursor != null && !cursor.isClosed()){
+                cursor.close();
             }
         }
-        sqLiteDatabase.close();
-
-        Log.i("Anup", "size of report list - "+reportList.size());
-        for (UpdatedTodoModel item: reportList) {
-            Log.i("Anup", "ID "+item.getId());
-            Log.i("Anup", "Done Task "+item.getItem());
-            Log.i("Anup", "Done status "+item.getStatus());
-        }
-    }
+            return reportList;
+    }*/
 
     private List<WishItemModel> fetchListFromDB(Context context){
         List<WishItemModel> wishList = new ArrayList<>();

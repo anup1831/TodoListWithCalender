@@ -2,6 +2,7 @@ package com.pathfinder.anup.dailyaction;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -9,7 +10,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.pathfinder.anup.adapter.WishListAdapter;
+import com.pathfinder.anup.database.TodoListSqlHelper;
 import com.pathfinder.anup.imptodo.R;
+import com.pathfinder.anup.model.UpdatedTodoModel;
 import com.pathfinder.anup.model.WishItemModel;
 
 import java.util.ArrayList;
@@ -51,6 +54,9 @@ public class DailyActivityScreen extends Activity implements DailyActivityMainVi
             Toast.makeText(getApplicationContext(), "Save data to DB "+modelList.size(), Toast.LENGTH_LONG).show();
             mainViewPresenter.addUpdatedTodoDataInDB(getApplicationContext(), modelList);
             //saveDataInDB();
+            TodoListSqlHelper td = new TodoListSqlHelper(getApplicationContext());
+            List<UpdatedTodoModel> reportList = td.fetchAllUpdatedTodoListFromDB(getApplicationContext());
+            Log.d("Anup", "Report list size "+reportList.size());
             modelList.clear();
         }
     }
