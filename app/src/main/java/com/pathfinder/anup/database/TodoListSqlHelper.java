@@ -72,32 +72,32 @@ public class TodoListSqlHelper extends SQLiteOpenHelper {
 
     }
 
-    public List<UpdatedTodoModel> fetchAllUpdatedTodoListFromDB(Context context){
-        TodoListSqlHelper todoListSqlHelper = new TodoListSqlHelper(context);
-        List<UpdatedTodoModel> reportList = new ArrayList<UpdatedTodoModel>();
-        UpdatedTodoModel model;
-        String selectQuery = "SELECT * FROM " + TodoListSqlHelper.TABLE_NAME_UPDATED_TODO_LIST;
-        SQLiteDatabase sqLiteDatabase = todoListSqlHelper.getReadableDatabase();
-
-        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
-        try{
-            if(cursor.moveToFirst()){
-                do{
-                    model = new UpdatedTodoModel(cursor.getInt(cursor.getColumnIndex(TodoListSqlHelper._ID_UPDATED_TODO)), cursor.getString(cursor.getColumnIndex(TodoListSqlHelper.TASK_DONE)),
-                            cursor.getInt(cursor.getColumnIndex(TodoListSqlHelper.TASK_STATUS)));
-                    /*model.setId(cursor.getInt(cursor.getColumnIndex(TodoListSqlHelper._ID_UPDATED_TODO)));
-                    model.setItem(cursor.getString(cursor.getColumnIndex(TodoListSqlHelper.TASK_DONE)));
-                    model.setStatus(cursor.getInt(cursor.getColumnIndex(TodoListSqlHelper.TASK_STATUS)));*/
-                    reportList.add(model);
-                }while (cursor.moveToNext());
-            }
-        }catch (Exception e){
-            Log.d("Anup", "Error while trying to get posts from database");
-        } finally {
-            if(cursor != null && !cursor.isClosed()){
-                cursor.close();
-            }
-        }
-        return reportList;
-    }
+//    public List<UpdatedTodoModel> fetchAllUpdatedTodoListFromDB(Context context){
+//        TodoListSqlHelper todoListSqlHelper = new TodoListSqlHelper(context);
+//        List<UpdatedTodoModel> reportList = new ArrayList<UpdatedTodoModel>();
+//        UpdatedTodoModel model;
+//        String selectQuery = "SELECT * FROM " + TodoListSqlHelper.TABLE_NAME_UPDATED_TODO_LIST;
+//        SQLiteDatabase sqLiteDatabase = todoListSqlHelper.getReadableDatabase();
+//
+//        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
+//        try{
+//            if(cursor.moveToFirst()){
+//                do{
+//                    model = new UpdatedTodoModel(cursor.getInt(cursor.getColumnIndex(TodoListSqlHelper._ID_UPDATED_TODO)), cursor.getString(cursor.getColumnIndex(TodoListSqlHelper.TASK_DONE)),
+//                            cursor.getInt(cursor.getColumnIndex(TodoListSqlHelper.TASK_STATUS)));
+//                    model.setId(cursor.getInt(cursor.getColumnIndex(TodoListSqlHelper._ID_UPDATED_TODO)));
+//                    model.setItem(cursor.getString(cursor.getColumnIndex(TodoListSqlHelper.TASK_DONE)));
+//                    model.setStatus(cursor.getInt(cursor.getColumnIndex(TodoListSqlHelper.TASK_STATUS)));
+//                    reportList.add(model);
+//                }while (cursor.moveToNext());
+//            }
+//        }catch (Exception e){
+//            Log.d("Anup", "Error while trying to get posts from database");
+//        } finally {
+//            if(cursor != null && !cursor.isClosed()){
+//                cursor.close();
+//            }
+//        }
+//        return reportList;
+//    }
 }

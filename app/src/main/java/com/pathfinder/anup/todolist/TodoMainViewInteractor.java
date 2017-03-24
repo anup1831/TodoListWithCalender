@@ -21,5 +21,5 @@ public interface TodoMainViewInteractor {
     }*/
 
     void pullListFromDB(Context context, OnLoadListFinishedListener listFinishedListener);
-    void addWishTodoData(Context context, String todoItem);
+    void addWishTodoData(Context context, int id, String shortName, String desc);
 }

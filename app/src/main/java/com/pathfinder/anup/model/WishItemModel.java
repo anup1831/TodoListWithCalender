@@ -8,11 +8,14 @@ public class WishItemModel {
 
 
     private String wishItem;
-    private int value;
+    private int id;
+    private int status;
 
-    public WishItemModel(String wishItem, int value) {
+
+    public WishItemModel(String wishItem, int id, int status) {
         this.wishItem = wishItem;
-        this.value = value;
+        this.id = id;
+        this.status = status;
     }
 
     public String getWishItem() {
@@ -23,11 +26,19 @@ public class WishItemModel {
         this.wishItem = wishItem;
     }
 
-    public int getValue() {
-        return value;
+    public int getId() {
+        return id;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

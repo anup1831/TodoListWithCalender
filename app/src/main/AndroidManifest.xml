@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionName="3.0"
+    android:versionCode="3"
     package="com.pathfinder.anup.imptodo">
 
     <application
@@ -19,8 +21,7 @@
         <activity android:name="com.pathfinder.anup.todolist.TodoListActivity"
             android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity android:name="com.pathfinder.anup.calendar.CalendarActivity"/>
-        <activity android:name="com.pathfinder.anup.dailyaction.DailyActivityScreen"
-            android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name="com.pathfinder.anup.dailyaction.DailyActivityScreen"/>
     </application>
 
 </manifest>

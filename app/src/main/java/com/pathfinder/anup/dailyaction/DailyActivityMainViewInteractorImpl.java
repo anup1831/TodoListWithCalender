@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.ListAdapter;
 
+import com.pathfinder.anup.database.DatabaseOpenHelper;
 import com.pathfinder.anup.database.TodoListSqlHelper;
 import com.pathfinder.anup.model.UpdatedTodoModel;
 import com.pathfinder.anup.model.WishItemModel;
@@ -21,7 +22,8 @@ import java.util.List;
 
 public class DailyActivityMainViewInteractorImpl implements DailyActivityMainViewInteractor {
 
-    TodoListSqlHelper todoListSqlHelper;
+    //TodoListSqlHelper todoListSqlHelper;
+    DatabaseOpenHelper dbHelper;
     private ListAdapter todoListAdapter;
     @Override
     public void pullListFromDB(Context context, DailyActivityMainViewInteractor.OnLoadListFinishedListener listFinishedListener) {
@@ -31,8 +33,9 @@ public class DailyActivityMainViewInteractorImpl implements DailyActivityMainVie
     @Override
     public void addUpdatedTodoDataInDB(Context context, List<WishItemModel> updatedTodoList) {
 
-        todoListSqlHelper = new TodoListSqlHelper(context);
-        SQLiteDatabase sqLiteDatabase = todoListSqlHelper.getWritableDatabase();
+        //todoListSqlHelper = new TodoListSqlHelper(context);
+        dbHelper = new DatabaseOpenHelper(context);
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         sqLiteDatabase.beginTransaction();
         try{
             //Todo item may be already present in DB so update its status only, Todo item is unique here
@@ -40,14 +43,16 @@ public class DailyActivityMainViewInteractorImpl implements DailyActivityMainVie
 
             ContentValues values = new ContentValues();
             for (WishItemModel item: updatedTodoList) {
+                Log.i("Anup", "inserted id "+item.getId());
+                values.put(DatabaseOpenHelper.ID_UPDATED_TODO, item.getId());
                 Log.i("Anup", "insert item "+item.getWishItem());
-                values.put(TodoListSqlHelper.TASK_DONE, item.getWishItem());
-                Log.i("Anup", "insert status "+item.getValue());
-                values.put(TodoListSqlHelper.TASK_STATUS, item.getValue());
+                values.put(DatabaseOpenHelper.TASK_DONE, item.getWishItem());
+                Log.i("Anup", "insert status "+item.getStatus());
+                values.put(DatabaseOpenHelper.TASK_STATUS, item.getStatus());
             }
 
             Log.i("Anup", "size of updatedTodoList list - "+updatedTodoList.size());
-            sqLiteDatabase.insertOrThrow(TodoListSqlHelper.TABLE_NAME_UPDATED_TODO_LIST, null, values);
+            sqLiteDatabase.insertOrThrow(DatabaseOpenHelper.TABLE_NAME_UPDATED_TODO_LIST, null, values);
             sqLiteDatabase.setTransactionSuccessful();
         }catch (Exception e){
             Log.d("Anup", "Error while trying to add post to database");
@@ -91,15 +96,16 @@ public class DailyActivityMainViewInteractorImpl implements DailyActivityMainVie
     private List<WishItemModel> fetchListFromDB(Context context){
         List<WishItemModel> wishList = new ArrayList<>();
         //WishItemModel itemModel;
-        todoListSqlHelper = new TodoListSqlHelper(context);
-        SQLiteDatabase sqLiteDatabase = todoListSqlHelper.getReadableDatabase();
+        //todoListSqlHelper = new TodoListSqlHelper(context);
+        dbHelper = new DatabaseOpenHelper(context);
+        SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
 
-        Cursor cursor = sqLiteDatabase.query(TodoListSqlHelper.TABLE_NAME,
-                new String[]{TodoListSqlHelper._ID, TodoListSqlHelper.COL1_TASK},
+        Cursor cursor = sqLiteDatabase.query(DatabaseOpenHelper.TB_TODO_ENTRY,
+                new String[]{DatabaseOpenHelper.ID, DatabaseOpenHelper.TODO_SHORT_NAME, DatabaseOpenHelper.TODO_DESCRIPTION},
                 null, null, null, null, null);
         while (cursor.moveToNext()){
             //wishList.add(cursor.getString(cursor.getColumnIndexOrThrow(TodoListSqlHelper.COL1_TASK)));
-            wishList.add(new WishItemModel(cursor.getString(cursor.getColumnIndexOrThrow(TodoListSqlHelper.COL1_TASK)), 0));
+            wishList.add(new WishItemModel(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseOpenHelper.TODO_SHORT_NAME)), 0, 0));
         }
         sqLiteDatabase.close();
         return wishList;

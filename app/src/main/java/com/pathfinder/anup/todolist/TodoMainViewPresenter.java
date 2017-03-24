@@ -12,6 +12,6 @@ public interface TodoMainViewPresenter {
     void onItemClicked(int position);
     void onDestroy();
     void onSuccess();
-    void addWishTodoInDB(Context context, String todoItem);
+    void addWishTodoInDB(Context context, int id, String todoItem, String desc);
     //void onAddTodoEntryErr();
 }

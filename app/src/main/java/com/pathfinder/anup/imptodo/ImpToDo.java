@@ -1,13 +1,29 @@
 package com.pathfinder.anup.imptodo;
 
 import android.app.FragmentTransaction;
+import android.app.LoaderManager;
+import android.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.pathfinder.anup.frgaments.FragCalender;
 import com.pathfinder.anup.frgaments.FragToDoList;
 
-public class ImpToDo extends AppCompatActivity {
+public class ImpToDo extends AppCompatActivity /*implements LoaderManager.LoaderCallbacks*/ {
+   /* @Override
+    public Loader onCreateLoader(int i, Bundle bundle) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader loader, Object o) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader loader) {
+
+    }*/
 
    /* public static final String FRAG_TO_DO_LIST = "To to list";
     public static final String FRAG_CALENDER = "calender";

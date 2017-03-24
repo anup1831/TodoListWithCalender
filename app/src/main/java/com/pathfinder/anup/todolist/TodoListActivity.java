@@ -3,6 +3,7 @@ package com.pathfinder.anup.todolist;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,7 +16,9 @@ import android.widget.Toast;
 
 import com.pathfinder.anup.calendar.CalendarActivity;
 import com.pathfinder.anup.imptodo.R;
+import com.pathfinder.anup.util.Tools;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -30,6 +33,7 @@ public class TodoListActivity extends Activity implements TodoMainView, AdapterV
     Button markOnCalender;
     ImageButton btnAdd;
     EditText wishTodo;
+    int id = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,11 @@ public class TodoListActivity extends Activity implements TodoMainView, AdapterV
         markOnCalender.setOnClickListener(this);
         btnAdd = (ImageButton) findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(this);
+        try {
+            Tools.writeToSD(getApplicationContext());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -108,7 +117,8 @@ public class TodoListActivity extends Activity implements TodoMainView, AdapterV
                 todoViewPresenter.onSuccess();
                 break;
             case R.id.btn_add:
-                todoViewPresenter.addWishTodoInDB(getApplicationContext(), wishTodo.getText().toString());
+                todoViewPresenter.addWishTodoInDB(getApplicationContext(), id++, wishTodo.getText().toString(), "");
+                Log.i("Anup", " - "+ id);
                 wishTodo.getText().clear();
                 break;
             default:

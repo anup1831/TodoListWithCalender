@@ -44,14 +44,14 @@ public class TodoMainViewPresenterImpl implements TodoMainViewPresenter, TodoMai
     }
 
     @Override
-    public void addWishTodoInDB(Context context, String todoItem) {
+    public void addWishTodoInDB(Context context, int id, String todoItem, String desc) {
         if(TextUtils.isEmpty(todoItem)){
             todoMainView.todoItemErr();
             todoMainView.hideProgress();
             error = true;
             return;
         } else {
-            todoMainViewInteractor.addWishTodoData(context, todoItem);
+            todoMainViewInteractor.addWishTodoData(context, id, todoItem, desc);
             todoMainView.showProgress();
             todoMainViewInteractor.pullListFromDB(context, this);
             todoMainView.hideProgress();

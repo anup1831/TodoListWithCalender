@@ -71,14 +71,14 @@ public class WishListAdapter extends BaseAdapter{
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 checkBox.setChecked(b);
                if(b) {
-                  todoList.get(i).setValue(1);
+                  todoList.get(i).setStatus(1);
                    DailyActivityScreen.modelList.add(todoList.get(i));
                } else {
-                   todoList.get(i).setValue(0);
+                   todoList.get(i).setStatus(0);
                    DailyActivityScreen.modelList.remove(todoList.get(i));
                }
                 //dbDataListener.saveDataInDB(todoList);
-                Log.i("Anup",  "checkBox -"+todoList.get(i).getValue() + " - "+ todoList.get(i).getWishItem());
+                Log.i("Anup",  "checkBox -"+todoList.get(i).getStatus() + " - "+ todoList.get(i).getWishItem());
 
             }
         });
